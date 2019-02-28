@@ -17,6 +17,7 @@ let orm = {
     },
     update: function(table, col, val, id, cb) {
         let queryString = "UPDATE " + table + " SET " + col + " = '" + val + "' WHERE id=" + id + ";"
+        console.log(queryString)
         connection.query(queryString, function(err, data){
             if (err) throw err;
             cb(data)

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Burger Eater</title>
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <link rel="stylesheet" href="./../../public/assets/css/burger_style.css">
+    </head>
+    <body>
+        {{{ body }}}
+
+    <script type="text/javascript">
+    $(document).on("click", ".eatBurger", eatBurger);
+    $(document).on("click", ".cookBurger", cookBurger)
+    function eatBurger() {
+        let id = $(this).data("id")
+        let eaten = {devoured: 1}
+        $.ajax("/api/burgers/" + id, {
+            method: "PUT",
+            data: eaten
+        }).then(function(){
+            console.log("Burger status changed")
+            location.reload()
+        })
+    }
+    function cookBurger() {
+        let id = $(this).data("id")
+        let eaten = {devoured: 0}
+        $.ajax("/api/burgers/" + id, {
+            method: "PUT",
+            data: eaten
+        }).then(function(){
+            console.log("Burger status changed")
+            location.reload()
+        })
+    }
+    </script>
+
+    </body>
+</html>
