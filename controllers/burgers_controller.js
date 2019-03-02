@@ -21,4 +21,18 @@ router.get("/", function(req, res) {
       })
   })
 
+  router.post("/api/burgers", function(req, res){
+      let newBurger = req.body.burger_name
+      burger.insert("burger_name", newBurger, function(data){
+        res.redirect("/")
+      })
+  })
+
+  router.delete("/api/burgers/:id", function(req, res){
+      let id = req.params.id
+      burger.delete(id, function(data){
+          res.status(200).end()
+      })
+  })
+
   module.exports = router

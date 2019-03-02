@@ -9,8 +9,11 @@
         {{{ body }}}
 
     <script type="text/javascript">
+
     $(document).on("click", ".eatBurger", eatBurger);
     $(document).on("click", ".cookBurger", cookBurger)
+    $(document).on("click", ".deleteBurger", deleteBurger)
+
     function eatBurger() {
         let id = $(this).data("id")
         let eaten = {devoured: 1}
@@ -22,6 +25,7 @@
             location.reload()
         })
     }
+
     function cookBurger() {
         let id = $(this).data("id")
         let eaten = {devoured: 0}
@@ -31,6 +35,16 @@
         }).then(function(){
             console.log("Burger status changed")
             location.reload()
+        })
+    }
+
+    function deleteBurger() {
+        let id = $(this).data("id")
+        $.ajax("/api/burgers/" + id, {
+            method: "DELETE"
+        }).then(function(){
+            console.log("Burger deleted")
+            location.reload();
         })
     }
     </script>

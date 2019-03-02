@@ -2,11 +2,17 @@
 
 <h2>Burgers waiting to be devoured!</h2>
 
+<form action="/api/burgers" method="post">
+<input type="text" name="burger_name" placeholder="Add Burger">
+<button>Submit</button>
+</form>
+
 <ul>
   {{#each burgers}}
     {{#unless devoured}}
     <h3>{{burger_name}}</h3>
     <button class="eatBurger" data-id="{{id}}">Eat the Burger</button>
+    <button class="deleteBurger" data-id="{{id}}">Delete the Burger</button>
     {{/unless}}
   {{/each}}
 </ul>
@@ -18,6 +24,7 @@
     {{#if devoured}}
         <h3>{{burger_name}}</h3>
         <button class="cookBurger" data-id="{{id}}">Cook This Burger</button>
+        <button class="deleteBurger" data-id="{{id}}">Delete the Burger</button>
     {{/if}}
   {{/each}}
 </ul>
